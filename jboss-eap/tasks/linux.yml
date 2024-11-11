@@ -1,0 +1,38 @@
+# tasks/linux.yml
+
+- name: Download JBoss EAP
+  ansible.builtin.get_url:
+    url: "{{ jboss_download_url }}"
+    dest: "/tmp/jboss-eap.zip"
+  become: true
+
+- name: Ensure JBoss installation directory exists
+  ansible.builtin.file:
+    path: "{{ jboss_install_directory }}"
+    state: directory
+    owner: "{{ jboss_user }}"
+    group: "{{ jboss_group }}"
+    mode: '0755'
+  become: true
+
+- name: Extract JBoss EAP to installation directory
+  ansible.builtin.unarchive:
+    src: "/tmp/jboss-eap.zip"
+    dest: "{{ jboss_install_directory }}"
+    remote_src: yes
+  become: true
+
+- name: Set JAVA_HOME for JBoss
+  ansible.builtin.lineinfile:
+    path: "{{ jboss_install_directory }}/bin/standalone.conf"
+    regexp: '^JAVA_HOME='
+    line: "JAVA_HOME={{ jdk_path }}"
+  become: true
+
+- name: Change ownership of JBoss directory
+  ansible.builtin.file:
+    path: "{{ jboss_install_directory }}"
+    owner: "{{ jboss_user }}"
+    group: "{{ jboss_group }}"
+    recurse: yes
+  become: true

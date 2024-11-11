@@ -1,0 +1,8 @@
+---
+# tests/test.yml
+
+- name: Install JBoss EAP on Linux
+  hosts: linux
+  gather_facts: yes
+  roles:
+    - jboss_eap
