@@ -1,11 +1,9 @@
+# defaults/main.yml
 ---
 # defaults file for ansible-jboss-eap
-# defaults/main.yml
-
-# defaults/main.yml
 
 # JBoss EAP settings
-jboss_local_zip_path: "/home/joy/ansible_hub/jboss-eap-7.4.0.zip"  # Path to the file on the Ansible control node
+jboss_local_zip_path: "/home/joy/ansible-hub/jboss-eap-7.4.0.zip"  # Path to the file on the Ansible control node
 jboss_install_directory: "/opt/jboss-eap-7.4"
 jboss_user: "jboss"
 jboss_group: "jboss"

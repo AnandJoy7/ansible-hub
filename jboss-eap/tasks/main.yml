@@ -2,4 +2,4 @@
 
 - name: Install JBoss EAP on Linux
   include_tasks: linux.yml
-  when: ansible_facts.os_family in ['Debian', 'RedHat']
+

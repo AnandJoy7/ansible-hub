@@ -2,7 +2,8 @@
 # tests/test.yml
 
 - name: Install JBoss EAP on Linux
-  hosts: linux
+  hosts: linux_servers
   gather_facts: yes
+  become: true
   roles:
-    - jboss_eap
+    - /home/joy/ansible-hub/jboss-eap
